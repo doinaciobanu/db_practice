@@ -37,14 +37,16 @@ CREATE TABLE `expenses` (
   `id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `amount` float DEFAULT NULL,
-  `currency` enum('$','Euro') DEFAULT NULL,
+  `currency_id` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`),
+  KEY `currency_id` (`currency_id`),
   CONSTRAINT `expenses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `expenses_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+  CONSTRAINT `expenses_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `expenses_ibfk_3` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `expenses` WRITE;
