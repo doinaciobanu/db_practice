@@ -38,5 +38,5 @@ ON user_lang (id);
 
 # Index for Users Table
 
-CREATE UNIQUE INDEX index_id
-ON users (id);
+CREATE UNIQUE INDEX index_user
+ON users (id, firstname, lastname);
